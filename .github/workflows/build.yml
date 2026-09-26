@@ -24,7 +24,7 @@ jobs:
           cd micropython/ports/esp32
           make BOARD_DIR=$BOARD_DIR submodules
           make BOARD_DIR=$BOARD_DIR FROZEN_MANIFEST=$MANIFEST
-          cd build-$BOARD_DIR
+          cd build-SEEED_XIAO_EE02
           python -m esptool --chip esp32s3 merge_bin -o firmware.bin "@flash_args"
           
       - name: Upload Firmware
