@@ -1,3 +1,3 @@
-require("webrepl")
+require("bundle-networking")
 
 freeze("src")
