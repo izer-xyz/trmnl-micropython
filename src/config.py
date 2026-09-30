@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 
 CONFIG_FILE = "config.json"
 
@@ -9,20 +10,20 @@ DEFAULT = {
     "password": "",
   },
   "trmnl": {
-    "url": ""
+    "base_url": ""
   }
 }
 
 config = DEFAULT
-wifi = config.wifi
-trmnl = config.trmnl
+wifi = config['wifi']
+trmnl = config['trmnl']
 
 def load():
   try:
-    with open(CONFIG_FILE, "r") as f:
+    with open(CONFIG_FILE, 'r') as f:
       config = json.load(f)
-      wifi = config.wifi
-      trmnl = config.trmnl
+      wifi = config['wifi']
+      trmnl = config['trmnl']
   except (OSError, ValueError):
     print("Config file missing or corrupt.")
 
@@ -35,5 +36,11 @@ def save():
   except OSError:
     print("Failed to write configuration file.")
 
-def has(block):
-  return config[block] != DEFAULT[block] 
+def setup():
+  print("SSID")
+  wifi['ssid'] = sys.stdin.readline()
+  print("Password")
+  wifi['password'] = sys.stdin.readline()
+  print("URL base")
+  trmnl['base_url'] = sys.stdin.readline()
+  save()
