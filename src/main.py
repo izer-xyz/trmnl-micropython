@@ -64,8 +64,7 @@ except Exception as e:
   print(e)
   # TODO save to error.log
 
-sleep(3)
 #print(f'[machine] sleep {refresh_rate}')
 #machine.deepsleep(refresh_rate)
 # reset just in case deepsleep doesn't reset
-machine.soft_reset()
+#machine.reset()
