@@ -6,10 +6,11 @@ from time import sleep
 
 FW_VERSION = 'trmnl-mp 0.0.1'
 
-print(f'Hello v{FW_VERSION}')
+print(f'Hello {FW_VERSION}')
 
 # Default refresh rate
 refresh_rate = 5 * 1000; 
+ERROR_LOG = 'error.log'
 CONFIG_FILE = 'config.json'
 CURRENT_IMAGE_FILE = 'image'
 
@@ -52,17 +53,19 @@ try:
   refresh_rate = config['device']['refresh_rate']
   
   # download image
-  image_url = config['display']['image_url']
+  image_url = config['device']['image_url']
   print(f'[api] image {image_url}')
-  api_img = requests.get(image_url)
+  api_img = requests.get(image_url, headers=headers)
   open(CURRENT_IMAGE_FILE, "wb").write(api_img.content)
   api_img.close()
   
   # display image 
+  # TODO 
+  
 except Exception as e:
   print('[error]') 
   print(e)
-  # TODO save to error.log
+  open(ERROR_LOG, "a").write("---\n" + e)
 
 #print(f'[machine] sleep {refresh_rate}')
 #machine.deepsleep(refresh_rate)
