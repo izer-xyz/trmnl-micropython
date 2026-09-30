@@ -2,6 +2,7 @@ import json
 import network
 import requests
 import machine 
+from time import sleep
 
 FW_VERSION = 'trmnl-mp 0.0.1'
 
@@ -63,6 +64,7 @@ except Exception as e:
   print(e)
   # TODO save to error.log
 
+sleep(30)
 print(f'[machine] sleep {refresh_rate}')
 machine.deepsleep(refresh_rate)
 # reset just in case deepsleep doesn't reset
