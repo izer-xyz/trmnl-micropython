@@ -1,6 +1,6 @@
 import json
 import network
-import urequests
+import requests
 import machine 
 
 FW_VERSION = 'trmnl-mp 0.0.1'
@@ -10,6 +10,7 @@ print(f'Hello v{FW_VERSION}')
 # Default refresh rate
 refresh_rate = 5 * 1000; 
 CONFIG_FILE = 'config.json'
+CURRENT_IMAGE_FILE = 'image'
 
 try: 
   # load config
@@ -39,7 +40,7 @@ try:
   
   # call display API
   print(f'[api] display {base_url}')
-  api_display = urequests.get(base_url + '/api/display', headers=headers)
+  api_display = requests.get(base_url + '/api/display', headers=headers)
   config['display'] = api_display.json()
   api_display.close()
   
@@ -52,8 +53,8 @@ try:
   # download image
   image_url = config['display']['image_url']
   print(f'[api] image {image_url}')
-  api_img = urequests.get(image_url)
-  open(dest_path, "wb").write(api_img.content)
+  api_img = requests.get(image_url)
+  open(CURRENT_IMAGE_FILE, "wb").write(api_img.content)
   api_img.close()
   
   # display image 
