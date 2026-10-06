@@ -1,5 +1,5 @@
-include("../../manifest.py")
+#include("../../manifest.py")
 
-freeze("../../shared") 
+#freeze("../../shared") 
 
-module("panel.py")
+#module("panel.py")
