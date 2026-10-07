@@ -1,4 +1,4 @@
-include(boards/SEEED_XIAO_ESP32S3/mpconfigboard.cmake)
+include(boards/ESP32_GENERIC_S3/mpconfigboard.cmake)
 
 list(APPEND SDKCONFIG_DEFAULTS
   ${MICROPY_BOARD_DIR}/sdkconfig.board
